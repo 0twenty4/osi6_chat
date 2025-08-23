@@ -143,11 +143,12 @@ int handle_command_message(const std::string& command_message, CLIENT& client) {
 		int client_oldest_chat_message_index;
 		command_stream >> client_oldest_chat_message_index;
 
-		if (client_oldest_chat_message_index!=0)
-			send_message_to_sender("/scroll_up " + server->chat_messages.at(client_oldest_chat_message_index-1), client);
+		if (client_oldest_chat_message_index != 0) {
+			send_message_to_sender("/scroll_up " + server->chat_messages.at(client_oldest_chat_message_index - 1), client);
 
-		if (!client.is_scrolled_up)
-			client.is_scrolled_up = true;
+			if (!client.is_scrolled_up)
+				client.is_scrolled_up = true;
+		}
 
 		return CLIENT_SCROLL_UP;
 	}
